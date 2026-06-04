@@ -3,17 +3,13 @@ from tkinter import ttk, messagebox
 import openpyxl as op
 import os
 
-# ==========================
-# WINDOW
-# ==========================
+
 window = tk.Tk()
 window.title("Simple Ordering System")
 window.configure(bg="lightblue")
 
-# ==========================
-# EXCEL FILE
-# ==========================
-FILE_NAME = "orders.xlsx"
+
+FILE_NAME = "Roces_Database.xlsx"
 
 if not os.path.exists(FILE_NAME):
     wb = op.Workbook()
@@ -24,9 +20,7 @@ if not os.path.exists(FILE_NAME):
 
 selected_id = None
 
-# ==========================
-# TITLE
-# ==========================
+
 title = tk.Label(
     window,
     text="Simple Ordering System",
@@ -35,15 +29,11 @@ title = tk.Label(
 )
 title.grid(row=0, column=0, columnspan=6, pady=10)
 
-# ==========================
-# FRAME
-# ==========================
+
 genframe = tk.Frame(window, bg="lightblue", bd=2, relief="groove")
 genframe.grid(row=1, column=0, columnspan=6, padx=10, pady=10)
 
-# ==========================
-# CUSTOMER NAME
-# ==========================
+
 cname_entry = tk.Entry(genframe, font=("Poppins", 12))
 cname_entry.grid(row=0, column=0, padx=10, pady=5)
 
@@ -55,9 +45,7 @@ cname_label = tk.Label(
 )
 cname_label.grid(row=1, column=0)
 
-# ==========================
-# PRODUCT
-# ==========================
+
 product_entry = tk.Entry(genframe, font=("Poppins", 12))
 product_entry.grid(row=0, column=1, padx=10, pady=5)
 
@@ -69,9 +57,7 @@ product_label = tk.Label(
 )
 product_label.grid(row=1, column=1)
 
-# ==========================
-# QUANTITY
-# ==========================
+
 qty_entry = tk.Entry(genframe, font=("Poppins", 12))
 qty_entry.grid(row=2, column=0, padx=10, pady=5)
 
@@ -83,9 +69,7 @@ qty_label = tk.Label(
 )
 qty_label.grid(row=3, column=0)
 
-# ==========================
-# PRICE
-# ==========================
+
 price_entry = tk.Entry(genframe, font=("Poppins", 12))
 price_entry.grid(row=2, column=1, padx=10, pady=5)
 
@@ -97,9 +81,7 @@ price_label = tk.Label(
 )
 price_label.grid(row=3, column=1)
 
-# ==========================
-# FUNCTIONS
-# ==========================
+
 def generate_id():
     wb = op.load_workbook(FILE_NAME)
     ws = wb.active
@@ -283,9 +265,7 @@ def delete_record():
 
     messagebox.showinfo("Success", "Record Deleted Successfully!")
 
-# ==========================
-# BUTTONS
-# ==========================
+
 submit_btn = tk.Button(
     window,
     text="Submit",
@@ -314,9 +294,7 @@ delete_btn = tk.Button(
 )
 delete_btn.grid(row=2, column=3)
 
-# ==========================
-# TREEVIEW
-# ==========================
+
 table = ttk.Treeview(
     window,
     columns=("Order ID", "Customer Name", "Product", "Quantity", "Price", "Total"),
@@ -331,12 +309,8 @@ table.grid(row=3, column=0, columnspan=6, padx=10, pady=10)
 
 table.bind("<<TreeviewSelect>>", select_record)
 
-# ==========================
-# LOAD DATA
-# ==========================
+
 load_data()
 
-# ==========================
-# MAIN LOOP
-# ==========================
+
 window.mainloop()
